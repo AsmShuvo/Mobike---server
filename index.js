@@ -45,8 +45,38 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/payments/:email", async (req, res) => {
+      const email = req.params.email;
+      if (!email) {
+        return res.status(400).send({ error: "Invalid email address" });
+      }
+      try {
+        const query = { email: email };
+        const result = await paymentCollection.find(query).toArray();
+
+        if (result.length === 0) {
+          return res
+            .status(404)
+            .send({ message: "No bikes found for this email" });
+        }
+
+        res.status(200).send(result);
+      } catch (error) {
+        console.error("Error fetching bike details:", error);
+        res
+          .status(500)
+          .send({ error: "An error occurred while fetching bike details" });
+      }
+    });
+
     app.get("/cart", async (req, res) => {
       const result = await cartCollection.find().toArray();
+      res.send(result);
+    });
+    app.get("/cart/:email", async (req, res) => {
+      const email = req.params.email;
+      const query = { email: email };
+      const result = await cartCollection.find(query).toArray();
       res.send(result);
     });
     app.get("/reviews", async (req, res) => {
@@ -59,6 +89,10 @@ async function run() {
     });
     app.get("/users", async (req, res) => {
       const result = await userCollection.find().toArray();
+      res.send(result);
+    });
+    app.get("/payments", async (req, res) => {
+      const result = await paymentCollection.find().toArray();
       res.send(result);
     });
 
@@ -141,6 +175,24 @@ async function run() {
       const query = { _id: new ObjectId(id) };
       const result = bikesCollection.deleteOne(query);
       console.log("#", result);
+      res.send(result);
+    });
+
+    // ============================= ALL PATCH REQUESTS ============================
+    app.patch("/payments/:id/:email/:confirmation", async (req, res) => {
+      const id = req.params.id;
+      const email = req.params.email;
+      const confirmation = req.params.confirmation;
+      console.log(id);
+      console.log("#", email);
+      const filter = { _id: new ObjectId(id) };
+      const updatedPayment = {
+        $set: {
+          status: confirmation,
+        },
+      };
+      console.log(updatedPayment);
+      const result = await paymentCollection.updateOne(filter, updatedPayment);
       res.send(result);
     });
 
