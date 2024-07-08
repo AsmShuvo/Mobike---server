@@ -2,7 +2,7 @@
 The server is created with `Express` and `MongoDB` <br> <br>
 Getting started
 ```
-  git clone https://github.com/Naiem890/Tools-Hub-Server.git PROJECT_NAME
+  git clone https://github.com/AsmShuvo/Mobike---server.git PROJECT_NAME
   cd PROJECT_NAME
   npm install
   npm start
