@@ -132,7 +132,6 @@ async function run() {
       try {
         const { price } = req.body;
 
-        // Validate the price parameter
         if (isNaN(price) || price <= 0) {
           return res.status(400).send({
             error: "Invalid price value. Price must be a positive number.",
