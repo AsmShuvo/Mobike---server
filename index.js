@@ -139,7 +139,6 @@ async function run() {
           });
         }
 
-        // Calculate amount in cents
         const amount = Math.round(price * 100);
 
         // Create the payment intent
