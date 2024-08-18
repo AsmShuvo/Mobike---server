@@ -208,7 +208,7 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`MOBIKE is running on ${PORT}`);
+  console.log(`MOBIKE application is running on ${PORT}`);
 });
 
 module.exports = app;
