@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
-
 require("dotenv").config();
 app.use(cors());
 app.use(express.json());
@@ -213,3 +212,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`MOBIKE is running on ${PORT}`);
 });
+
+module.exports = app;
