@@ -3,7 +3,7 @@ Serever created with `Express` `MongoDB`
 ### GET STARTED
 Open your command prompt and paste 
 ```
-git clone https://github.com/AsmShuvo/Medicamp---Server.git
+git clone https://github.com/AsmShuvo/Mobike---server.git
 cd  MOBIKE--Server
 npm install
 ```
